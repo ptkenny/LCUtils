@@ -1,0 +1,22 @@
+{
+  "name": "lcutils",
+  "version": "1.0.0",
+  "description": "A program to automate annoying tasks in the League of Legends client.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patthekenny/LCUtils.git"
+  },
+  "author": "Patrick Kenny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patthekenny/LCUtils/issues"
+  },
+  "homepage": "https://github.com/patthekenny/LCUtils#readme",
+  "devDependencies": {
+    "electron": "1.7.9"
+  }
+}
