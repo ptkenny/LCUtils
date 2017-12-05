@@ -18,5 +18,8 @@
   "homepage": "https://github.com/patthekenny/LCUtils#readme",
   "devDependencies": {
     "electron": "1.7.9"
+  },
+  "dependencies": {
+    "websocket": "^1.0.25"
   }
 }
