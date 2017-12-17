@@ -6,14 +6,13 @@ function getPlugins() {
     let pluginFiles = fs.readdirSync("./plugins/", { encoding: 'utf8'});
 
     for(file of pluginFiles) {
-        if(file.substr(0, file.length - 3) !== ".js") {
-            plugins.push(require("./plugins/" + file));
+        if(file.substr(file.length - 10, file.length) === ".plugin.js") {
+            plugins.push(require("../plugins/" + file));
         } else {
             console.error(`File ${file} in /plugins is not a JS file!`);
         }
     }
-
-    console.log(plugins);
+    return plugins;
 }
 
 module.exports = getPlugins();

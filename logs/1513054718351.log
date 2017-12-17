@@ -1,0 +1,3 @@
+{"level":"info","message":"Logger initiated...","timestamp":"2017-12-12T04:58:38.358Z"}
+{"level":"info","message":"Connected to the LCU's internal WebSocket server","timestamp":"2017-12-12T04:58:39.306Z"}
+{"level":"info","message":"Successfuly subscribed to JSON API client events","timestamp":"2017-12-12T04:58:39.309Z"}

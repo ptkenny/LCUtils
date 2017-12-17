@@ -1,9 +1,12 @@
+const logger = require("./utils/configure_log");
 const WebSocketClient = require('websocket').client;
-const lcuAuthInfo = require('./lcu_auth.js');
+const lcuAuthInfo = require('./utils/lcu_auth');
 
+let plugins = require('./utils/get_plugins')
 
-let test = require('./get_plugins.js')
-
+// Configures the websocket connection to...  
+// a. Allow uncertified connections to the client(client has no cert).
+// b. Authenticate the connection with the password from lockfile.
 let leagueWsClient = new WebSocketClient( {
     tlsOptions: {
         rejectUnauthorized: false,
@@ -11,25 +14,25 @@ let leagueWsClient = new WebSocketClient( {
     }
 });
 
-console.log(lcuAuthInfo);
-
 // TODO: Add an error message or something to the window.
 leagueWsClient.on('connectFailed', (error) => {
-    console.log(error.toString())
+    info.error(err.message);
 });
 
 leagueWsClient.on('connect', (connection) => {
-    console.log("this looks like a job for me")
+
+    logger.info("Connected to the LCU's internal WebSocket server");
     // Tells the client to send me all JSON API event information. 
     // Thanks to molenzwiebel, who made the project(Mimic) I found this snippet in.
     connection.send("[5,\"OnJsonApiEvent\"]");
-    
+    logger.info("Successfuly subscribed to JSON API client events");
+
     connection.on('error', (error) => {
         console.log(error.toString());
     });
 
     connection.on('close', () => {
-        console.log("closed");
+        logger.info("WebSocket connection with client closed");
     });
     
     connection.on('message', (message) => {
@@ -37,10 +40,20 @@ leagueWsClient.on('connect', (connection) => {
         if(message.type != 'utf8' || message.utf8Data === "") return;
         handleMessage(message);
     });
+
 });
 
 function handleMessage(message) {
     let parsedData = JSON.parse(message.utf8Data);
+    let uri = parsedData[2].uri;
+
+    // Check every plugin's trigger URI, and if it's the same URI, pull the trigger.
+    for(plugin of plugins) {
+        if(uri.startsWith(plugin.prototype.triggerURI)) {
+            plugin.prototype.onTrigger(parsedData[2], uri);
+        }
+    }
 }
 
+// Already configured to use the password from lockfile, all I need to do is pass the port.
 leagueWsClient.connect(`wss://127.0.0.1:${lcuAuthInfo.port}/`);
