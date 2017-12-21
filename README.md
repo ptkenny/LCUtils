@@ -25,7 +25,7 @@ As of now, there is no working UI. But running the program will still work prope
 
 # LICENSE
 ```
-Copyright (C) didey 2016
+Copyright (C) didey 2017
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
