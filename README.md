@@ -1,6 +1,7 @@
 # LCUtils
 ![lcu logo](https://i.imgur.com/mQK0ebu.png)
-LCUTils is a League of Legends CLIENT utility program(does NOT interact with the game at all).
+
+LCUTils is a League of Legends client utility program.
 
 # FEATURES:
  * Auto Accept queues for when you need to quickly go AFK.
