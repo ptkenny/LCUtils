@@ -1,5 +1,5 @@
 const request = require('request');
-const lcuAuthInfo = require('./../../utils/lcu_auth.js');
+const lcuAuthInfo = require('.././utils/lcu_auth');
 
 console.log(lcuAuthInfo)
 
