@@ -7,7 +7,7 @@ class PassivePlugin extends React.Component {
 
     render() {
         return ( 
-            <p> {this.props.plugin.name} {this.props.plugin.description} {this.props.plugin.version} {this.props.plugin.author} </p>
+            <p> {this.props.plugin.name} {this.props.plugin.description} {this.props.plugin.version} {this.props.plugin.author} {this.props.plugin.pluginType} </p>
         );
     }
 
@@ -15,10 +15,6 @@ class PassivePlugin extends React.Component {
 
 PassivePlugin.propTypes = {
     plugin: PropTypes.object
-}
-
-PassivePlugin.defaultProps = {
-    plugin: {}
 }
 
 module.exports = PassivePlugin;

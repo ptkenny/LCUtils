@@ -26,6 +26,7 @@
     "babel-register": "^6.3.13",
     "prop-types": "^15.6.0",
     "react": "^15.3.2",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^15.3.2",
     "request": "^2.83.0",
     "websocket": "^1.0.25",

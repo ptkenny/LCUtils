@@ -1,0 +1,7 @@
+body {
+    background: url("./../backgrounds/back3.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+p {
+    color: white;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PassivePluginPanel from './components/passsive_plugin_panel'
+import PluginPanel from './components/plugin_panel';
 
 const render = plugins => {
     window.onload = () => {
-        ReactDOM.render(<PassivePluginPanel plugins={plugins} />, document.getElementById("content"));
+        ReactDOM.render(<PluginPanel plugins={plugins} />, document.getElementById("content"));
     }    
 }
 

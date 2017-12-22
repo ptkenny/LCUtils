@@ -13,7 +13,7 @@ MessageNotifier.triggerURI = "/lol-chat/v1/conversations";
 MessageNotifier.onTrigger = (utilData, trigger) => {
     // The client sends out two events when a chat is received, and the event that has 
     // "utilData.data.body" holds less info, so I filter that one out.
-    if(utilData.data === null || utilData.data.type !== "chat" || utilData.data.body || utilData.data.unreadMessageCount === 0) return;
+    if(utilData.data === null || utilData.data.type !== "chat" || utilData.data.body || utilData.data.unreadMessageCount === 0) return; 
 
     notifier.toast_notify(`Message from ${utilData.data.name}:`, utilData.data.lastMessage.body).then((code) => {
         // If SnoreToast returns 0, that means the notification was clicked, documented here:
