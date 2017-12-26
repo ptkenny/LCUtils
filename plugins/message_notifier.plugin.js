@@ -2,7 +2,6 @@ const MessageNotifier = {}
 
 const client_utils = require("../plugin_utils/lc_server_utils");
 const logger = require('winston');
-const notifier = require('../utils/toast_notifier')
 
 MessageNotifier.name = "Desktop Message Notifier";
 MessageNotifier.description = "Uses the default notification method of a given platform to relay messages.";
@@ -15,13 +14,14 @@ MessageNotifier.onTrigger = (utilData, trigger) => {
     // "utilData.data.body" holds less info, so I filter that one out.
     if(utilData.data === null || utilData.data.type !== "chat" || utilData.data.body || utilData.data.unreadMessageCount === 0) return; 
 
-    notifier.toast_notify(`Message from ${utilData.data.name}:`, utilData.data.lastMessage.body).then((code) => {
-        // If SnoreToast returns 0, that means the notification was clicked, documented here:
-        // https://github.com/KDE/snoretoast
-        if(code === 0) client_utils.leagueClientPost("/riotclient/ux-show");
+    let notification = new Notification(`${utilData.data.name} | League of Legends`, {
+        body: utilData.data.lastMessage.body,
+        icon: "./snoretoast/logo.png"
     });
 
-    logger.info("Toast notification was sent to the user");
+    notification.onclick = () => {
+        client_utils.leagueClientPost("/riotclient/league-ux/show");
+    };
 
 }
 

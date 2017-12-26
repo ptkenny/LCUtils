@@ -5,7 +5,7 @@ const lcuAuthInfo = require('./lcu_auth');
 let plugins;
 
 // Configures the websocket connection to...
-// a. Allow uncertified connections to the client(client has no cert).
+// a. Allow uncertified connections to the client(client has invalid cert).
 // b. Authenticate the connection with the password from lockfile.
 let leagueWsClient = new WebSocketClient({
 	tlsOptions: {

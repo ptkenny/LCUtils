@@ -7,7 +7,12 @@ class PassivePlugin extends React.Component {
 
     render() {
         return ( 
-            <p> {this.props.plugin.name} {this.props.plugin.description} {this.props.plugin.version} {this.props.plugin.author} {this.props.plugin.pluginType} </p>
+            <div id={this.props.plugin.name + "_div"} class="plugin_div">
+                <p class="name_and_version">{this.props.plugin.name} - {this.props.plugin.version}</p>
+                <p class="description">{this.props.plugin.description}</p>
+                <p class="author">{this.props.plugin.author}</p>
+                <hr></hr>
+            </div>
         );
     }
 
