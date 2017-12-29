@@ -47,10 +47,10 @@ let initSocketHandler = function(newPlugins) {
 function handleMessage(message) {
     let parsedData = JSON.parse(message.utf8Data);
 	let uri = parsedData[2].uri;
-    
+
     // Check every plugin's trigger URI, and if it's the same URI, pull the trigger.
     plugins.forEach( plugin => {
-        if (uri.startsWith(plugin.triggerURI)) {
+        if (uri.startsWith(plugin.triggerURI) && plugin.isEnabled) {
             plugin.onTrigger(parsedData[2], uri);
 		}
     })

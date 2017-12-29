@@ -15,6 +15,11 @@ function getPlugins() {
         }
     });
 
+    // In the future, save this to a config file of some sort and load it here.
+    plugins.forEach(plugin => {
+        plugin.isEnabled = true;
+    });
+
     return plugins;
 }
 
