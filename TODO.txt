@@ -1,0 +1,12 @@
+- toast notifications for messages - _/
+- auto accept - _/
+- auto crafter
+- random profile icon
+- restart UX 
+- relog/logging into different accounts
+- notify when someone has finished their game
+- desktop invite notifications
+
+consolidate passive and active plugin panels into one panel
+
+add currently logged in as
