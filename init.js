@@ -1,3 +1,3 @@
-let plugins = require('./utils/get_plugins');
-require('./render').render(plugins);
-require('./utils/manage_socket').initSocketHandler(plugins);
+const remote = require('electron').remote;
+require('./render').render(remote.getGlobal('plugins'));
+require('./utils/manage_socket').initSocketHandler(remote.getGlobal('plugins'));

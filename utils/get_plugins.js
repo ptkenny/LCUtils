@@ -1,4 +1,5 @@
-const fs = require('fs')
+const fs = require('fs');
+const jsonFile = require('jsonfile');
 
 function getPlugins() {
     let plugins = [];
@@ -15,9 +16,12 @@ function getPlugins() {
         }
     });
 
+    let pluginSettings = jsonFile.readFileSync('./pluginsettings.json');
+
     // In the future, save this to a config file of some sort and load it here.
     plugins.forEach(plugin => {
-        plugin.isEnabled = true;
+        if(pluginSettings.PLUGIN_STATES[plugin.name] === undefined) return;
+        plugin.isEnabled = pluginSettings.PLUGIN_STATES[plugin.name];
     });
 
     return plugins;

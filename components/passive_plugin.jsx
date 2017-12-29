@@ -7,9 +7,8 @@ import { Button } from 'react-bootstrap';
 class PassivePlugin extends React.Component {
     constructor(props) {
         super(props);
-        // By default, all plugins are active.
         this.state = {
-            is_plugin_active: true
+            is_plugin_active: this.props.plugin.isEnabled
         };
     }
 
