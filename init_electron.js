@@ -22,6 +22,8 @@ function createWindow () {
   })
 }
 
+app.setAppUserModelId("lcutils");
+
 app.on('ready', createWindow)
 
 app.on('window-all-closed', function () {
