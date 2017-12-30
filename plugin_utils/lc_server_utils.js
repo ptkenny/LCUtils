@@ -4,7 +4,7 @@ const lcuAuthInfo = require('.././utils/lcu_auth');
 console.log(lcuAuthInfo)
 
 function leagueClientGet (lcPluginURL, options = undefined, callback) {
-    request.get(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : { options, rejectUnauthorized: false }, (err, response, body) => {
+    request.get(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : Object.assign({rejectUnauthorized: false }, options), (err, response, body) => {
         if(callback) {
             callback(err, response, body);
         }
@@ -12,7 +12,7 @@ function leagueClientGet (lcPluginURL, options = undefined, callback) {
 }
 
 const leagueClientPost = function (lcPluginURL, options = undefined, callback) {
-    request.post(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : { options, rejectUnauthorized: false }, (err, response, body) => {
+    request.post(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : Object.assign({rejectUnauthorized: false }, options), (err, response, body) => {
         if(callback) {
             callback(err, response, body);
         }
@@ -20,7 +20,7 @@ const leagueClientPost = function (lcPluginURL, options = undefined, callback) {
 }
 
 const leagueClientDelete = function (lcPluginURL, options = undefined, callback) {
-    request.delete(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : { options, rejectUnauthorized: false }, (err, response, body) => {
+    request.delete(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : Object.assign({rejectUnauthorized: false }, options), (err, response, body) => {
         if(callback) {
             callback(err, response, body);
         }
@@ -28,7 +28,7 @@ const leagueClientDelete = function (lcPluginURL, options = undefined, callback)
 }
 
 const leagueClientPut = function (lcPluginURL, options = undefined, callback) {
-    request.put(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : { options, rejectUnauthorized: false }, (err, response, body) => {
+    request.put(`https://riot:${lcuAuthInfo.password}@127.0.0.1:${lcuAuthInfo.port}${lcPluginURL}`, options === undefined ? { rejectUnauthorized: false } : Object.assign({rejectUnauthorized: false }, options), (err, response, body) => {
         if(callback) {
             callback(err, response, body);
         }

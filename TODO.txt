@@ -9,4 +9,4 @@
 
 consolidate passive and active plugin panels into one panel
 
-add currently logged in as
+add currently logged in as 

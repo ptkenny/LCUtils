@@ -10,20 +10,19 @@ class ActivePlugin extends React.Component {
     }
 
     render() {
-        const Controls = require(`./${this.props.plugin.controlComponentFileName}`).default;
-        console.log(Controls);
+        const Controls = this.props.plugin.controls;
+        
         return (
             <div id={this.props.plugin.name + "_div"} className="plugin_div">
                 <p className="name_and_version">{this.props.plugin.name} - {this.props.plugin.version}</p>
                 <p className="description">{this.props.plugin.description}</p>
                 <p className="author">{this.props.plugin.author}</p>
                 <p>Controls:</p>
-                    <Controls />
+                    <Controls plugin={this.props.plugin} />
                 <hr></hr>
             </div>
         );
     }
-
 }
 
 ActivePlugin.propTypes = {

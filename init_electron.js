@@ -3,14 +3,11 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
-const jsonFile = require('jsonfile')
-const settingsPath = './pluginsettings.json'
-const fs = require('fs')
+
 
 let mainWindow
 
 // Global is justified here. Disagree? Email me.
-global.plugins = require('./utils/get_plugins');
 
 function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 600})
@@ -43,16 +40,3 @@ app.on('activate', function () {
     createWindow()
   }
 })
-
-
-app.on('quit', () => {
-    let enabledExport = {
-      PLUGIN_STATES: {}
-    };
-    global.plugins.forEach(plugin => {
-      enabledExport["PLUGIN_STATES"][plugin.name] = plugin.isEnabled;
-    });
-    jsonFile.writeFile(settingsPath, enabledExport, { spaces: 2 }, (err) => {
-      if(err) console.log(err);
-    });
-});
