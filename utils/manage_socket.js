@@ -26,7 +26,7 @@ let initSocketHandler = function(newPlugins) {
 		// Tells the client to send me all JSON API event information.
 		// Thanks to molenzwiebel, who made the project(Mimic) I found this snippet in.
 		connection.send('[5,"OnJsonApiEvent"]');
-		logger.info('Successfuly subscribed to JSON API client events');
+		logger.info('Successfully subscribed to JSON API client events');
 
 		connection.on('error', error => {
 			console.log(error.toString());

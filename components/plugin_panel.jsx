@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import PassivePlugin from './passive_plugin';
+import ActivePlugin from './active_plugin';
 
 const center_style = {
 	display: 'flex',
@@ -14,7 +15,7 @@ class PluginPanel extends React.Component {
 	constructor(props) {
 		super(props);
 		// By default, open the passive plugin settings.
-		this.state = { active_panel: 'PASSIVE' };
+		this.state = { active_panel: 'ACTIVE' };
     }
     
     _openPassivePluginSettings() {
@@ -48,8 +49,8 @@ class PluginPanel extends React.Component {
                     {
                         this.props.plugins.map( plugin => {
                             if(plugin.PLUGIN_TYPE === this.state.active_panel) {
-                                return <PassivePlugin key={plugin.name} plugin={plugin} />;
-                            }
+                                return plugin.PLUGIN_TYPE === "PASSIVE" ? <PassivePlugin key={plugin.name} plugin={plugin} /> : <ActivePlugin key={plugin.name} plugin={plugin} />;
+							}
                         })
                     }
 				</div>
