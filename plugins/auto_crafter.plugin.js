@@ -1,8 +1,6 @@
-'use babel';
-
 import Controls from '../plugin_components/auto_crafter';
 
-const logger = require('winston');
+const logger = require('../utils/configure_log');
 const client_utils = require("../plugin_utils/lc_server_utils");
 
 const AutoCrafter = {}
@@ -14,19 +12,38 @@ AutoCrafter.author = "didey";
 AutoCrafter.PLUGIN_TYPE = "ACTIVE";
 AutoCrafter.controls = Controls;
 
-AutoCrafter.craftKeysAndOpenChests = function() {
-    logger.info("Crafting keys and opening chests");
+AutoCrafter.disenchantChampShards = function() {
+    logger.info("Disenchanting champion shards...");
     client_utils.leagueClientGet("/lol-loot/v1/player-loot", {}, (err, response, body) => {
-        if(err) logger.error(err);
+        if(err) return logger.error(err);
+        let playerLoot = JSON.parse(body);
+
+        let champShards = playerLoot.filter(lootItem => lootItem.disenchantLootName === "CURRENCY_champion");
+
+        champShards.forEach( champShard => {
+            let disenchantOptions = {
+                body: `["${champShard.lootId}"]`
+            }
+
+            client_utils.leagueClientPost(`/lol-loot/v1/recipes/CHAMPION_RENTAL_disenchant/craft?repeat=${champShard.count}`, disenchantOptions, (err, response, body) => {
+                if(err) return logger.error(err);
+                logger.info("All champion shards disenchanted.");
+            });
+        });
+    });
+}
+
+AutoCrafter.craftKeysAndOpenChests = function() {
+    logger.info("Crafting keys and opening chests...");
+    client_utils.leagueClientGet("/lol-loot/v1/player-loot", {}, (err, response, body) => {
+        if(err) return logger.error(err);
         let playerLoot = JSON.parse(body);
 
         let keyFragmentMaterial = playerLoot.find(lootItem => lootItem.lootName === "MATERIAL_key_fragment");
-        console.log("KEY FRAGMENT MATERIAL: ", keyFragmentMaterial);
         let levelUpChestMaterial = playerLoot.find(lootItem => lootItem.lootName === "CHEST_128");
-        console.log("LEVELUP CHEST MATERIAL: ", levelUpChestMaterial)
-        let chestMaterial = playerLoot.find(lootItem => lootItem.lootName === "CHEST_champion_mastery");
-        console.log("NORMAL CHEST MATERIAL: ", chestMaterial);
+        let chestMaterial = playerLoot.find(lootItem => lootItem.lootName === "CHEST_generic");
 
+        // Set count to 0 here so we don't get an error later, except for the internal error(just indicating that repeat=0).
         if(keyFragmentMaterial === undefined) {
             keyFragmentMaterial = { count: 0 };
         }
@@ -43,22 +60,23 @@ AutoCrafter.craftKeysAndOpenChests = function() {
             body: '[ "MATERIAL_key_fragment" ]'
         };
 
+        logger.info("Crafting keys from fragments...");
+
         client_utils.leagueClientPost(`/lol-loot/v1/recipes/MATERIAL_key_fragment_forge/craft?repeat=${keyRepeat}`, keyCraftOptions, (err, response, body) => {
             if(err) return logger.error(err);
-            console.log("KEY BODY: " + body);
-            
+            logger.info("Keys forged.");
+
             let keyMaterial = playerLoot.find(lootItem => lootItem.lootName === "MATERIAL_key");
             let keyCount = keyMaterial === undefined ? 0 : keyMaterial.count;
             
             let chestOptions = {
-                body: '[ "CHEST_champion_mastery" ]'
+                body: '[ "CHEST_generic", "MATERIAL_key" ]'
             };
-
-            client_utils.leagueClientPost(`/lol-loot/v1/recipes/CHEST_champion_mastery_OPEN/craft?repeat=${ keyCount >= chestMaterial.count ? chestMaterial.count : keyCount }`, chestOptions, (err, response, body) => {
+            
+            logger.info("Opening chests...");
+            client_utils.leagueClientPost(`/lol-loot/v1/recipes/CHEST_generic_OPEN/craft?repeat=${ keyCount >= chestMaterial.count ? chestMaterial.count : keyCount }`, chestOptions, (err, response, body) => {
                 if(err) return logger.error(err);
-                console.log("REGULAR CHEST BODY: " + body);
-                // Now we disenchant all champ shards.
-
+                logger.info("Chests opened.");
             });
         });
 
@@ -66,11 +84,12 @@ AutoCrafter.craftKeysAndOpenChests = function() {
             body: '[ "CHEST_128" ]'
         };
 
+        logger.info("Opening levelup chests...");
         client_utils.leagueClientPost(`/lol-loot/v1/recipes/CHEST_128_OPEN/craft?repeat=${levelUpChestMaterial.count}`, levelUpChestOptions, (err, response, body) => {
-            if(err) return logger.error(body);
-            console.log("LEVELUP CHEST BODY: " + body)
+            if(err) return logger.error(err);
+            logger.info("Levelup chests opened.");
         });
     });
-};
+}; 
 
 module.exports = AutoCrafter;

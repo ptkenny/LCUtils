@@ -1,9 +1,9 @@
-const MessageNotifier = {}
-
 const client_utils = require("../plugin_utils/lc_server_utils");
-const logger = require('winston');
+const logger = require('../utils/configure_log');
 const platform = require('os').platform();
 const notifier = require('../utils/toast_notifier');
+
+const MessageNotifier = {}
 
 MessageNotifier.name = "Desktop Message Notifier";
 MessageNotifier.description = "Uses the default notification method of a given platform to relay messages.";

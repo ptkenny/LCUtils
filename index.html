@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Didey's LCUtils</title>
-    <script src="./libs/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
 
-  <body> 
-    <br>
-    <div id="content"></div>
-    
-    <script>
-      require('babel-register');
-    </script>
+<head>
+  <meta charset="UTF-8">
+  <title>Didey's LCUtils</title>
+  <script src="./libs/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
 
-    <script src="init.js"></script>
+<body>
+  <br>
+  <div id="content"></div>
 
-  </body>
-  
+  <script>
+    require('babel-register');
+  </script>
+
+  <div class="footer">
+    <span class="icon">
+      <img id="user_icon" width=32 height=32></img>
+    </span>
+    <span class="name">
+      <p id="user_name"></p>
+    </span>
+    <span class="hours">
+      <p id="hours_played"></p>
+    </span>
+  </div>
+
+  <script src="init.js"></script>
+</body>
+
 </html>

@@ -19,6 +19,9 @@ class Controls extends React.Component {
                 <Button bsStyle="primary" onClick={this.props.plugin.craftKeysAndOpenChests}>
                     Open Chests
                 </Button>
+                <Button bsStyle="primary" onClick={this.props.plugin.disenchantChampShards}>
+                    Disenchant Champion Shards
+                </Button>
             </div>
         )
     }

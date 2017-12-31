@@ -2,6 +2,32 @@ body {
     background: url("./../backgrounds/back3.jpg") no-repeat center center fixed;
     background-size: cover;
 }
-p {
+
+#content p {
     color: white;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+}
+.footer span {
+    display: inline-block;
+}
+
+.icon {
+    top: 0;
+    width: 50px;
+}
+
+.name {
+    width: 100px;
+}
+
+.hours {
+    width: 100px;
 }

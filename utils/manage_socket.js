@@ -1,4 +1,3 @@
-const logger = require('./configure_log');
 const WebSocketClient = require('websocket').client;
 const lcuAuthInfo = require('./lcu_auth');
 
