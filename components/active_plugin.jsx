@@ -17,8 +17,7 @@ class ActivePlugin extends React.Component {
                 <p className="name_and_version">{this.props.plugin.name} - {this.props.plugin.version}</p>
                 <p className="description">{this.props.plugin.description}</p>
                 <p className="author">{this.props.plugin.author}</p>
-                <p>Controls:</p>
-                    <Controls plugin={this.props.plugin} />
+                <Controls plugin={this.props.plugin} />
                 <hr></hr>
             </div>
         );

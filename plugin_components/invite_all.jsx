@@ -16,12 +16,12 @@ class Controls extends React.Component {
     render() {
         return ( 
             <div>
-                <Button bsStyle="primary" onClick={this.props.plugin.craftKeysAndOpenChests}>
-                    Open Chests
+                <Button bsStyle="primary" onClick={this.props.plugin.inviteAllFriends}>
+                    Invite All Available Friends
                 </Button>
                 <br />
-                <Button bsStyle="primary" onClick={this.props.plugin.disenchantChampShards}>
-                    Disenchant Champion Shards
+                <Button bsStyle="primary" onClick={this.props.plugin.inviteAllRecent}>
+                    Invite All Available Recents
                 </Button>
             </div>
         )
