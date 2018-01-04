@@ -41,6 +41,9 @@
   },
   "build": {
     "productName": "LCUtils",
-    "asar": false
+    "asar": false,
+    "directories": {
+      "buildResources": "./build"
+    }
   }
 }
