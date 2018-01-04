@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import PassivePlugin from './passive_plugin';
-import ActivePlugin from './active_plugin';
+import PassivePlugin from './passive_plugin.jsx';
+import ActivePlugin from './active_plugin.jsx';
 
 const center_style = {
 	display: 'flex',

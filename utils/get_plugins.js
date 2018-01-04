@@ -14,12 +14,18 @@ function getPlugins() {
         }
     });
 
-    let pluginSettings = jsonFile.readFileSync('./pluginsettings.json');
-
-    plugins.forEach(plugin => {
-        if(pluginSettings.PLUGIN_STATES[plugin.name] === undefined) return;
-        plugin.isEnabled = pluginSettings.PLUGIN_STATES[plugin.name];
-    });
+    if(fs.existsSync('./pluginsettings.json')) {
+        let pluginSettings = jsonFile.readFileSync('./pluginsettings.json');
+    
+        plugins.forEach(plugin => {
+            if(pluginSettings.PLUGIN_STATES[plugin.name] === undefined) return;
+            plugin.isEnabled = pluginSettings.PLUGIN_STATES[plugin.name];
+        });
+    } else {
+        plugins.forEach(plugin => {
+            plugin.isEnabled = true;
+        });
+    }
 
     return plugins;
 }

@@ -1,4 +1,4 @@
-import Controls from '../plugin_components/invite_all';
+import Controls from '../plugin_components/invite_all.jsx';
 
 const logger = require('../utils/configure_log');
 const client_utils = require("../plugin_utils/lc_server_utils");

@@ -2,10 +2,10 @@
   "name": "lcutils",
   "version": "1.0.0",
   "description": "A program to automate annoying tasks in the League of Legends client.",
-  "main": "init_electron.js",
+  "main": "./main/init_electron.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron -r babel-register ."
+    "start": "electron --require babel-register ."
   },
   "repository": {
     "type": "git",
@@ -16,13 +16,15 @@
   "bugs": {
     "url": "https://github.com/patthekenny/LCUtils/issues"
   },
-  "homepage": "https://github.com/patthekenny/LCUtils#readme",
+  "homepage": "./",
   "devDependencies": {
-    "electron": "1.7.9"
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron": "^1.7.10"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
     "jsonfile": "^4.0.0",
     "prop-types": "^15.6.0",
@@ -32,6 +34,13 @@
     "request": "^2.83.0",
     "websocket": "^1.0.25",
     "winston": "^2.4.0",
-    "winston-electron": "^0.2.0"
+    "winston-electron": "^0.2.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "build": {
+    "productName": "LCUtils",
+    "asar": false
   }
 }

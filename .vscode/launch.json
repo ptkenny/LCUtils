@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+      "name": "Launch main.js",
+      "type": "node",
+      "program": "${workspaceRoot}/lib/main.js",
+      "stopOnEntry": false,
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/electron-prebuilt/dist/<name-of-binary>",
+      "runtimeArgs": [],
+      "env": { },
+      "sourceMaps": false
+    }]
+  }

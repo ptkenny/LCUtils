@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PluginPanel from './components/plugin_panel';
+import PluginPanel from './components/plugin_panel.jsx';
 
 const logger = require('./utils/configure_log');
 const lcuAuthInfo = require('./utils/lcu_auth');
